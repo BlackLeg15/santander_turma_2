@@ -22,7 +22,7 @@ class _AuthPageState extends State<AuthPage> {
     super.initState();
     disposable = reaction((_) => store.state, (state) {
       if (state is AuthStoreSuccessState) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Você será redirecionado')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logado. Seu nome é: ${state.username}')));
       }
     });
   }
@@ -88,7 +88,7 @@ class _AuthPageState extends State<AuthPage> {
                       ? null
                       : () {
                           if (usernameError != null || passwordError != null) return;
-                          store.loginWithUsernameAndPasswrd();
+                          store.loginWithUsernameAndPasswrd(username, password);
                         },
                   child: const Text('Entrar'));
             }),

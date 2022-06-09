@@ -29,9 +29,9 @@ mixin _$AuthStore on _AuthStoreBase, Store {
       context: context);
 
   @override
-  Future<void> loginWithUsernameAndPasswrd() {
+  Future<void> loginWithUsernameAndPasswrd(String username, String password) {
     return _$loginWithUsernameAndPasswrdAsyncAction
-        .run(() => super.loginWithUsernameAndPasswrd());
+        .run(() => super.loginWithUsernameAndPasswrd(username, password));
   }
 
   @override
