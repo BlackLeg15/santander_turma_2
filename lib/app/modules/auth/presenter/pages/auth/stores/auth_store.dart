@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:santander_turma_2/app/modules/auth/states/auth_store_states.dart';
+
+import 'states/auth_store_states.dart';
 
 part 'auth_store.g.dart';
 
