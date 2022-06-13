@@ -10,6 +10,10 @@ class DatasourceMockImpl implements Datasource {
 
   @override
   Future<LoggedUserEntity> call(Params params) async {
-    return LoggedUserEntity('Novo usuário', 'adby@gmail.com');
+    final result = _mapper.fromJson({
+      'username': 'Adby',
+      'email': 'adby@gmail.com'
+    });
+    return result;
   }
 }
