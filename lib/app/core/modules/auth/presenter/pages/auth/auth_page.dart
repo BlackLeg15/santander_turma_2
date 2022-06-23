@@ -3,9 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../../../core/widgets/loading_button.dart';
-import 'stores/auth_store.dart';
-import 'stores/states/auth_store_states.dart';
+import '../../../../../../modules/auth/presenter/pages/auth/stores/auth_store.dart';
+import '../../../../../../modules/auth/presenter/pages/auth/stores/states/auth_store_states.dart';
+import '../../../../../widgets/loading_button.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -51,9 +51,6 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Entrar'),
-      ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
@@ -87,6 +84,14 @@ class _AuthPageState extends State<AuthPage> {
               },
             ),
             Observer(builder: (_) {
+              // return ElevatedButton(
+              //     onPressed: store.state is AuthStoreLoadingState
+              //         ? null
+              //         : () {
+              //             if (username.isEmpty || password.isEmpty || usernameError != null || passwordError != null) return;
+              //             store.loginWithUsernameAndPasswrd(username, password);
+              //           },
+              //     child: const Text('Entrar'));
               return LoadingButton(
                   onTap: () async {
                     if (username.isEmpty || password.isEmpty || usernameError != null || passwordError != null) return;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:santander_turma_2/app/modules/counter/counter_page.dart';
 import 'home_store.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,29 +24,41 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter'),
+        title: const Text('Página inicial'),
+        actions: [
+          ElevatedButton.icon(
+              onPressed: () {
+                Modular.to.pushNamed('animations');
+              },
+              icon: const Icon(Icons.animation),
+              label: const Text('Animações'))
+        ],
       ),
       body: ScopedBuilder<HomeStore, Exception, int>(
         store: store,
         onState: (_, counter) {
-          return Padding(
-            padding: const EdgeInsets.all(10),
-            child: Text('$counter'),
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    //Modular.to.pushNamed('auth');
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => const CounterPage())));
+                  },
+                  child: const Text('Entrar'),
+                ),
+                const ElevatedButton(onPressed: null, child: Text('Criar uma conta')),
+              ],
+            ),
           );
         },
         onError: (context, error) => const Center(
           child: Text(
-            'Too many clicks',
+            'Mensagem de erro',
             style: TextStyle(color: Colors.red),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //store.increment();
-          Modular.to.pushNamed('auth/');
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }
