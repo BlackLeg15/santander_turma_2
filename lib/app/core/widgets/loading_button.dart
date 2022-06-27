@@ -6,8 +6,9 @@ class LoadingButton extends StatefulWidget {
   final FutureOr<void> Function() onTap;
   final bool enabled;
   final String label;
+  final double? width;
 
-  const LoadingButton({Key? key, required this.onTap, required this.enabled, required this.label}) : super(key: key);
+  const LoadingButton({Key? key, required this.onTap, required this.enabled, required this.label, this.width}) : super(key: key);
 
   @override
   State<LoadingButton> createState() => _LoadingButtonState();
@@ -31,7 +32,7 @@ class _LoadingButtonState extends State<LoadingButton> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       height: 45,
-      width: isLoading ? 45 : 80,
+      width: isLoading ? 45 : (widget.width ?? 80),
       child: Material(
         borderRadius: BorderRadius.circular(16),
         color: widget.enabled ? Theme.of(context).colorScheme.primary : Theme.of(context).disabledColor,

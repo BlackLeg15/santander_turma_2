@@ -1,5 +1,17 @@
-abstract class LoginException {}
+abstract class LoginException {
+  final String message;
 
-class EmptyUsername extends LoginException {}
+  LoginException(this.message);
+}
 
-class UnknownException extends LoginException {}
+class EmptyUsername extends LoginException {
+  EmptyUsername(super.message);
+}
+
+class UnknownException extends LoginException {
+  UnknownException(super.message);
+}
+
+class NotFoundUser extends LoginException {
+  NotFoundUser(super.message);
+}

@@ -34,6 +34,16 @@ mixin _$AuthStore on _AuthStoreBase, Store {
         .run(() => super.loginWithUsernameAndPasswrd(username, password));
   }
 
+  late final _$signupWithUsernameAndPasswrdAsyncAction = AsyncAction(
+      '_AuthStoreBase.signupWithUsernameAndPasswrd',
+      context: context);
+
+  @override
+  Future<void> signupWithUsernameAndPasswrd(String username, String password) {
+    return _$signupWithUsernameAndPasswrdAsyncAction
+        .run(() => super.signupWithUsernameAndPasswrd(username, password));
+  }
+
   @override
   String toString() {
     return '''

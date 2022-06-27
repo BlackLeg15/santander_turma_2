@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:santander_turma_2/app/modules/auth/domain/usecases/login_with_username_and_password/exceptions.dart';
 
+import 'exceptions.dart';
 import 'params.dart';
 import 'repository.dart';
 import 'result_typedef.dart';
@@ -14,7 +14,7 @@ class UsecaseImpl implements Usecase {
   @override
   LoginResult call(Params params) async {
     if (params.username.isEmpty) {
-      return Left(EmptyUsername('Nome de usuário é vazio'));
+      return Left(EmptyUsername('Nome de usuário vazio'));
     }
     return _repository(params);
   }

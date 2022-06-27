@@ -10,4 +10,8 @@ class AuthStoreSuccessState extends AuthStoreStates {
   AuthStoreSuccessState(this.username);
 }
 
-class AuthStoreErrorState extends AuthStoreStates {}
+class AuthStoreErrorState extends AuthStoreStates {
+  final String message;
+
+  AuthStoreErrorState(this.message);
+}

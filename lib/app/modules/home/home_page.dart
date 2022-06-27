@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:localization/localization.dart';
 import 'package:santander_turma_2/app/app_widget.dart';
-import 'package:santander_turma_2/app/modules/counter/counter_page.dart';
 import 'home_store.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,12 +39,16 @@ class _HomePageState extends State<HomePage> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  //Modular.to.pushNamed('auth');
-                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const CounterPage())));
+                  Modular.to.pushNamed('auth/');
                 },
                 child: Text('home_page_login'.i18n()),
               ),
-              ElevatedButton(onPressed: null, child: Text("home_page_create_account".i18n())),
+              ElevatedButton(
+                onPressed: () {
+                  Modular.to.pushNamed('auth/signup');
+                },
+                child: Text("home_page_create_account".i18n()),
+              ),
               ElevatedButton(
                   onPressed: () {
                     final appState = context.findAncestorStateOfType<AppWidgetState>();

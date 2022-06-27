@@ -7,14 +7,14 @@ import '../../../../../core/widgets/loading_button.dart';
 import 'stores/auth_store.dart';
 import 'stores/states/auth_store_states.dart';
 
-class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key}) : super(key: key);
+class SignupPage extends StatefulWidget {
+  const SignupPage({Key? key}) : super(key: key);
 
   @override
-  State<AuthPage> createState() => _AuthPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _SignupPageState extends State<SignupPage> {
   final store = Modular.get<AuthStore>();
   late ReactionDisposer disposable;
 
@@ -23,7 +23,7 @@ class _AuthPageState extends State<AuthPage> {
     super.initState();
     disposable = reaction((_) => store.state, (state) {
       if (state is AuthStoreSuccessState) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logado. Seu nome é: ${state.username}')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Cadastrado. Seu nome é: ${state.username}')));
       }
       if (state is AuthStoreErrorState) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
@@ -55,7 +55,7 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Entrar'),
+        title: const Text('Cadastrar-se'),
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 40),
@@ -92,12 +92,13 @@ class _AuthPageState extends State<AuthPage> {
             const SizedBox(height: 20),
             Observer(builder: (_) {
               return LoadingButton(
+                  width: 120,
                   onTap: () async {
                     if (username.isEmpty || password.isEmpty || usernameError != null || passwordError != null) return;
-                    await store.loginWithUsernameAndPasswrd(username, password);
+                    await store.signupWithUsernameAndPasswrd(username, password);
                   },
                   enabled: store.state is! AuthStoreLoadingState,
-                  label: 'Entrar');
+                  label: 'Cadastrar-se');
             }),
           ],
         ),

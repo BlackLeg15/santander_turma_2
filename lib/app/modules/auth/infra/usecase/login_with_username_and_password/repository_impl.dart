@@ -19,7 +19,7 @@ class RepositoryImpl implements Repository {
     } on LoginException catch (e) {
       return Left(e);
     } catch (e) {
-      return Left(UnknownException());
+      return Left(UnknownException(e.toString()));
     }
   }
 }
